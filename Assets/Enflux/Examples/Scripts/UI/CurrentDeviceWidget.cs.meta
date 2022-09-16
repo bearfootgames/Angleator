@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2e125bceabf2a984a8e214ea8a50df21
+timeCreated: 1505433961
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _enfluxManager: {instanceID: 0}
+  - _deviceNameText: {instanceID: 0}
+  - _deviceStateText: {instanceID: 0}
+  - _deviceBatteryLevelText: {instanceID: 0}
+  - _deviceIconImage: {instanceID: 0}
+  - _toggleCalibratingButton: {instanceID: 0}
+  - _toggleCalibratingText: {instanceID: 0}
+  - _openBluetoothManagerButton: {instanceID: 0}
+  - UnavailableIcon: {fileID: 21300000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  - AvailableIcon: {fileID: 21300000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

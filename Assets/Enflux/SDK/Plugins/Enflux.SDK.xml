@@ -1,0 +1,2969 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enflux.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:Enflux.SDK.Alignment.AlignmentParams">
+            <summary>
+            Paramters representing an alignment.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Alignment.AlignmentParams.DefaultAlignmentCountdownTime">
+            <summary>
+            Default time for user to get into an alignment pose.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Alignment.AlignmentParams.MinimumAlignmentCountdownTime">
+            <summary>
+            Minimum allowed time for user to get into an alignment pose.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.AlignmentParams.#ctor(UnityEngine.Quaternion)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="basisOrientation">The basis orientation.</param>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.AlignmentParams.#ctor(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>
+            Constructor when the technical frame is already known.
+            </summary>
+            <param name="basisOrientation">The basis orientation.</param>
+            <param name="technicalFrame">The technical frame.</param>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.AlignmentParams.#ctor(UnityEngine.Quaternion,UnityEngine.Quaternion,UnityEngine.Quaternion,UnityEngine.Quaternion,UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>
+            Constructor when all alignment parameters are already known.
+            </summary>
+            <param name="basisOrientation">The basis orientation.</param>
+            <param name="technicalFrame">The technical frame.</param>
+            <param name="alignmentFrame">The alignment frame.</param>
+            <param name="heading">The initial heading.</param>
+            <param name="segmentToSensor">The segment to sensor.</param>
+            <param name="alignedOrientation">The aligned orientation.</param>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.Identity">
+            <summary>
+            The identity alignment parameters.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.BasisOrientation">
+            <summary>
+            The basis orientation.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.TechnicalFrame">
+            <summary>
+            The techncial frame.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.Heading">
+            <summary>
+            The initial heading.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.AlignmentFrame">
+            <summary>
+            The alignment frame.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.SegmentToSensor">
+            <summary>
+            The segment to sensor.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Alignment.AlignmentParams.AlignedOrientation">
+            <summary>
+             The aligned orientation.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.AlignmentParams.ToPrettyString">
+            <summary>
+            Returns a nicely formatted string for logging.
+            </summary>
+            <returns>A nicely formatted string for logging.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.AlignmentParams.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Alignment.ImuOrientations">
+            <summary>
+            IMU orientation utilities.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.ImuOrientations.BaseOrientation(UnityEngine.Quaternion)">
+            <summary>
+            Convert NED space quaternion to Unity space.
+            </summary>
+            <param name="q">NED space quaternion.</param>
+            <returns>A NED space quaternion to Unity space.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.ImuOrientations.LeftOrientation(UnityEngine.Quaternion)">
+            <summary>
+            Create a left node NED space quaternion from Unity space orientation.
+            </summary>
+            <param name="q">NED space quaternion.</param>
+            <returns>A left node NED space quaternion from Unity space orientation.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Alignment.ImuOrientations.RightOrientation(UnityEngine.Quaternion)">
+            <summary>
+            Create a right node NED space quaternion from Unity space orientation.
+            </summary>
+            <param name="q">NED space quaternion.</param>
+            <returns>A right node NED space quaternion from Unity space orientation.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Animation.AnimatorRigMapper">
+            <inheritdoc />
+            <summary>
+            Animates a rig with the transforms accessed from Unity's animator component. With a supported rig, this is an easy-to-setup alternative to <see cref="T:Enflux.SDK.Animation.TransformRigMapper" />.
+            </summary>
+            <remarks>
+            <para>Requirements for the 3D model's rig:</para>
+            <list type="number">
+            <item>The rig must be exported in the z-forward direction.</item>
+            <item>No initial rotations can applied to the limb joints (except z-axis rotation for the left/right upper arms).</item>
+            </list>
+            <para>Unity setup:</para>
+            <list type="number">
+            <item>On the 3D model, set Animation Type to Skeleton.</item>
+            <item>On the 3D model, ensure you have correctly configured the avatar as a humanoid. If correctly configured, there will be a checkmark under Avatar Definition.</item>
+            <item>On the 3D model, DO NOT enable Optimize Game Objects. Unity will flatten the rig's hierarchy and remove the Transforms for each joint.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Enflux.SDK.Animation.AnimatorRigMapper.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Animation.AnimatorRigMapper.ApplyHumanoidToRig">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Animation.AnimatorRigMapper.IsAnimatorConfigured(System.Boolean)">
+            <summary>
+            Has the animator and its avatar been properly configured?
+            </summary>
+            <returns>A boolean indicating whether configured.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Animation.COMController">
+            <inheritdoc />
+            <summary>
+            Calculates center of mass.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.COMController.JointPrefab">
+            <summary>
+            Prefab for center of mass joints.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.COMController.CenterOfMassPrefab">
+            <summary>
+            Prefab for center of mass.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.COMController.LeftFoot">
+            <summary>
+            Is the left foot pivoting?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.Chest">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.LeftUpperArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.LeftLowerArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.RightUpperArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.RightLowerArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.Pelvis">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.LeftUpperLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.RightUpperLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.LeftLowerLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.RightLowerLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.COMController.Head">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Animation.COMJoint">
+            <summary>
+            Joint for center of mass.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.EnfluxBoneChain">
+            <summary>
+            A resizeable bone chain defined by transforms.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.EnfluxBoneChain.MinDistance">
+            <summary>
+            Min distance between any bones on the bone chain.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.BonePath">
+            <summary>
+            The full bone path. If the path is valid, BonePath[0] is <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/> and BonePath[BonePath.Count-1] is <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/>.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.IsPathValid">
+            <summary>
+            Is the path between <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/> and <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/> valid? <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/> must be a descendent of <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/>.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.UnityUnitsToMeters">
+            <summary>
+            Scale factor to convert Unity units to real-world meters.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.NumBones">
+            <summary>
+            Number of bones in the bone chain.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.From">
+            <summary>
+            Starting bone of the bone chain.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.To">
+            <summary>
+            Ending bone of the bone chain.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.Distance">
+            <summary>
+            Length of the bone chain in Unity units.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.DistanceMeters">
+            <summary>
+            Length of the bone chain in real world meters.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.DistanceFeet">
+            <summary>
+            Length of the bone chain in real world feet.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.DistanceInches">
+            <summary>
+            Length of the bone chain in real world inches.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.EnfluxBoneChain.DistanceFeetInches">
+            <summary>
+            Length of the bone chain in real world (feet, inches).
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.SetDistance(System.Single,System.Single)">
+            <summary>
+            Sets the length of the bone chain in real world (feet, inches).
+            </summary>
+            <param name="feet">Length of the bone chain in feet.</param>
+            <param name="inches">Additional length of the bone chain in inches.</param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.RecalculateBonePath">
+            <summary>
+            Recalculates the path between <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/> and <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/>.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.ApplyToAllBones(System.Action{UnityEngine.Transform})">
+            <summary>
+            Apply <paramref name="action"/> to all bones in the bone chain.
+            </summary>
+            <param name="action">Action to apply.</param>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.ApplyToAllBones(System.Action{System.Single,UnityEngine.Transform})">
+            <summary>
+            Apply <paramref name="action"/> to all bones in the bone chain.
+            </summary>
+            <param name="action">Action to apply.</param>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.ApplyToInsideBones(System.Action{UnityEngine.Transform})">
+            <summary>
+            Apply <paramref name="action"/> to all interior bones in the bone chain (excludes <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/> and <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/>).
+            </summary>
+            <param name="action">Action to apply.</param>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.ApplyToInsideBones(System.Action{System.Single,UnityEngine.Transform})">
+            <summary>
+            Apply <paramref name="action"/> to all interior bones in the bone chain (excludes <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.From"/> and <see cref="P:Enflux.SDK.Animation.EnfluxBoneChain.To"/>).
+            </summary>
+            <param name="action">Action to apply.</param>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.InterpolateBonePositions">
+            <summary>
+            Interpolates the bone positions of all interior bones along the bone chain.
+            </summary>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.InterpolateBoneRotations">
+            <summary>
+            Interpolates the bone rotations of all interior bones along the bone chain.
+            </summary>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.InterpolateBoneRotations(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Interpolates the bone rotations of all interior bones along the bone chain.
+            </summary>
+            <param name="directionFrom">For</param>
+            <param name="directionTo"></param>
+            <param name="rotationTo"></param>
+            <returns>bool indicating success.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Animation.EnfluxBoneChain.DrawGizmos">
+            <summary>
+            Draws Unity Editor gizmos for debugging this frame.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.LimbMath">
+            <summary>
+            Math utilities for limbs.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.LimbMath.Limb">
+            <summary>
+            Limb types.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.LimbMath.Gender">
+            <summary>
+            Gender types.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.LimbMath.GetLength(Enflux.SDK.Animation.LimbMath.Limb,Enflux.SDK.Animation.LimbMath.Gender)">
+            <summary>
+            Gets the length of a limb.
+            </summary>
+            <param name="limb"></param>
+            <param name="gender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.LimbMath.GetMidpoint(Enflux.SDK.Animation.LimbMath.Limb,Enflux.SDK.Animation.LimbMath.Gender)">
+            <summary>
+            Gets the midpoint of a limb.
+            </summary>
+            <param name="limb"></param>
+            <param name="gender"></param>
+            <returns>The midpoint of a limb.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.LimbMath.Mass(Enflux.SDK.Animation.LimbMath.Limb,Enflux.SDK.Animation.LimbMath.Gender)">
+            <summary>
+            Get the mass of a limb.
+            </summary>
+            <param name="limb"></param>
+            <param name="gender"></param>
+            <returns>The mass of a limb.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Animation.Midpoint">
+            <summary>
+            Midpoint of a limb.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.RigMapper">
+            <summary>
+            Defines core functionality required to animate a rig from a skeleton.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.RigMapper.ApplyUpperBodyOrientations">
+            <summary>
+            Should we apply orientations to the upper body of the rig?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.RigMapper.ApplyLowerBodyOrientations">
+            <summary>
+            Should we apply orientations to the lower body of the rig?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.RigMapper.ApplyHeadOrientations">
+            <summary>
+            Should we apply orientations to the head bone of the rig?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.RigMapper.ApplyInterpolation">
+            <summary>
+            Should we interpolate any intermediate bones on the rig?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.Chest">
+            <summary>
+            Chest bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.LeftUpperArm">
+            <summary>
+            Left shoulder bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.LeftLowerArm">
+            <summary>
+            Left elbow bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.RightUpperArm">
+            <summary>
+            Right shoulder bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.RightLowerArm">
+            <summary>
+            Right elbow bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.Pelvis">
+            <summary>
+            Pelvis bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.LeftUpperLeg">
+            <summary>
+            Left hip bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.LeftLowerLeg">
+            <summary>
+            Left knee of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.RightUpperLeg">
+            <summary>
+            Right hip bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.RightLowerLeg">
+            <summary>
+            Right knee bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.Head">
+            <summary>
+            Head bone of the rig.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.RigMapper.Skeleton">
+            <summary>
+            Skeleton to take local bone orientations from to apply to the rig.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.RigMapper.Reset">
+            <summary>
+            Reset to default values.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.RigMapper.Awake">
+            <summary>
+            Awake is called when the script instance is being loaded.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.RigMapper.LateUpdate">
+            <summary>
+            LateUpdate is called every frame, if the Behaviour is enabled. LateUpdate is called after all Update functions have been called.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Animation.RigMapper.TryApplyLocalOrientationToBone(Enflux.SDK.Core.IOrientationStream,UnityEngine.Transform)">
+            <summary>
+            Attempts to apply <paramref name="orientationStream"/> to the bone if it is initialized.
+            </summary>
+            <param name="orientationStream">Local orientation stream.</param>
+            <param name="bone">Success indicating whether local orientation could be applied.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Animation.RigMapper.ApplyHumanoidToRig">
+            <summary>
+            Applies local orientations in <see cref="P:Enflux.SDK.Animation.RigMapper.Skeleton"/> to the rig.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Animation.TransformRigMapper">
+            <inheritdoc />
+            <summary>
+            This class animates a rig defined by Transforms.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.Chest">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.LeftUpperArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.LeftLowerArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.RightUpperArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.RightLowerArm">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.Pelvis">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.LeftUpperLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.LeftLowerLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.RightUpperLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.RightLowerLeg">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Animation.TransformRigMapper.Head">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetChest(UnityEngine.Transform)">
+            <summary>
+            Set chest bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetLeftUpperArm(UnityEngine.Transform)">
+            <summary>
+            Set left shoulder bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetLeftLowerArm(UnityEngine.Transform)">
+            <summary>
+            Set left elbow bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetRightUpperArm(UnityEngine.Transform)">
+            <summary>
+            Set right shoulder bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetRightLowerArm(UnityEngine.Transform)">
+            <summary>
+            Set right elbow bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetPelvis(UnityEngine.Transform)">
+            <summary>
+            Set pelvis bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetLeftUpperLeg(UnityEngine.Transform)">
+            <summary>
+            Set left hip bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetLeftLowerLeg(UnityEngine.Transform)">
+            <summary>
+            Set left knee bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetRightUpperLeg(UnityEngine.Transform)">
+            <summary>
+            Set right hip bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetRightLowerLeg(UnityEngine.Transform)">
+            <summary>
+            Set right knee bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="M:Enflux.SDK.Animation.TransformRigMapper.SetHead(UnityEngine.Transform)">
+            <summary>
+            Set head bone to <paramref name="bone"/>.
+            </summary>
+            <param name="bone"></param>
+        </member>
+        <member name="T:Enflux.SDK.Animation.WalkingController">
+            <summary>
+            Pivots a <see cref="T:Enflux.SDK.Animation.COMController"/> from the ground.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.ComController">
+            <summary>
+            The <see cref="F:Enflux.SDK.Animation.WalkingController.ComController"/> to calculate walking from.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.LeftFoot">
+            <summary>
+            The transform where the left foot contacts the ground.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.RightFoot">
+            <summary>
+            The transform where the right foot contacts the ground.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.LeftToes">
+            <summary>
+            The transform where the left toes contact the ground.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.RightToes">
+            <summary>
+            The transform where the right toes contact the ground.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Animation.WalkingController.ContactLayers">
+            <summary>
+            The layers that can be contacted against.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.WalkingController.CurrentPivot">
+            <summary>
+            The current pivot point.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.WalkingController.IsPivotingOnLeft">
+            <summary>
+            Is the walking controller pivoting on the left side?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Animation.WalkingController.IsValid">
+            <summary>
+            Is the walking controller set up?
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Attributes.ReadonlyAttribute">
+            <inheritdoc />
+            <summary>
+            Makes serializable fields readonly in the Unity inspector.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AlignmentNotification">
+            <summary>
+            Alignment notifications.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentNotification.Cancelled">
+            <summary>
+            The alignment was cancelled.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentNotification.ResetToDefault">
+            <summary>
+            The alignment was set to the default value.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentNotification.Finished">
+            <summary>
+            The alignment finished.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentNotification.ErrorNoDevicesStreaming">
+            <summary>
+            The alignment encountered an error because no devices were streaming.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AlignmentNotificationExtensions">
+            <summary>
+            AlignmentNotification extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AlignmentNotificationExtensions.IsError(Enflux.SDK.DataTypes.AlignmentNotification)">
+            <summary>
+            Is <paramref name="notification"/> an error value?
+            </summary>
+            <param name="notification"></param>
+            <returns>A bool indication if <paramref name="notification"/> an error value.</returns>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AlignmentState">
+            <summary>
+            Alignment state.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentState.NotAligning">
+            <summary>
+            Not currently aligning.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentState.CountingDown">
+            <summary>
+            Waiting to align.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentState.Aligning">
+            <summary>
+            Currently aligning.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AlignmentType">
+            <summary>
+            Alignment type.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentType.None">
+            <summary>
+            No alignment.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AlignmentType.BipedIPose">
+            <summary>
+            An I Pose alignment. To get in an I Pose, stand with toes at shoulder width pointed straight ahead, with arms straight down clasped against the sides of the thighs.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.IUpdatableHeader">
+            <summary>
+            Interface representing an animation header.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.IUpdatableHeader.ToLatest">
+            <summary>
+            Converts the header to the newest header version.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AnimationHeaderV2">
+            <inheritdoc />
+            <summary>
+            Animation header version 2.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.HeaderVersion">
+            <summary>
+            Header format version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.FrameVersion">
+            <summary>
+            Frame structure version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.NumShirtFrames">
+            <summary>
+            Number of recorded shirt frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.NumPantsFrames">
+            <summary>
+            Number of recorded pants frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.Duration">
+            <summary>
+            Duration of the recording in milliseconds.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.ShirtBaseOrientation">
+            <summary>
+            Initial shirt heading.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV2.PantsBaseOrientation">
+            <summary>
+            Initial pants heading.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderV2.ToLatest">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AnimationHeaderV3">
+            <inheritdoc />
+            <summary>
+            Animation header version 3.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.HeaderVersion">
+            <summary>
+            Header format version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.FrameVersion">
+            <summary>
+            Frame structure version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.NumShirtFrames">
+            <summary>
+            Number of recorded shirt frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.NumPantsFrames">
+            <summary>
+            Number of recorded pants frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.Duration">
+            <summary>
+            Duration of the recording in milliseconds.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.ShirtAlignment">
+            <summary>
+            Shirt alignment values.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV3.PantsAlignment">
+            <summary>
+            Pants alignment values.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderV3.ToLatest">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AnimationHeaderV4">
+            <inheritdoc />
+            <summary>
+            Animation header version 4.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.HeaderVersion">
+            <summary>
+            Header format version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.FrameVersion">
+            <summary>
+            Frame structure version.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.NumShirtFrames">
+            <summary>
+            Number of recorded shirt frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.NumPantsFrames">
+            <summary>
+            Number of recorded pants frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.NumLeftFootFrames">
+            <summary>
+            Number of recorded left foot frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.NumRightFootFrames">
+            <summary>
+            Number of recorded right foot frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.NumHeadFrames">
+            <summary>
+            Number of recorded head frames.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.Duration">
+            <summary>
+            Duration of the recording in milliseconds.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.ShirtAlignment">
+            <summary>
+            Shirt alignment values.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.PantsAlignment">
+            <summary>
+            Pants alignment values.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.LeftFootAlignment">
+            <summary>
+            Left foot alignment values.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.RightFootAlignment">
+            <summary>
+            Right foot alignment values.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.AnimationHeaderV4.HeadAlignment">
+            <summary>
+            Head alignment values.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderV4.ToLatest">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AnimationHeaderUtils">
+            <summary>
+            Animation header utility methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderUtils.InitializeFromArray``1(System.Byte[])">
+            <summary>
+            Gets a <see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/> from the data bytes.
+            </summary>
+            <param name="data">Data byte representing an <see cref="T:Enflux.SDK.DataTypes.IUpdatableHeader"/>.</param>
+            <typeparam name="T">Type of <paramref name="data"/>.</typeparam>
+            <returns><see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/> from the data bytes.</returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderUtils.GetHeaderVersionType(System.Int32)">
+            <summary>
+            Returns the corresponding Type for <paramref name="headerVersion"/>.
+            </summary>
+            <param name="headerVersion">Version of the header.</param>
+            <returns>The corresponding Type for <paramref name="headerVersion"/>.</returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderUtils.InitializeFromArray(System.Int32,System.Byte[])">
+            <summary>
+            Returns the <see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/> for <paramref name="data"/> of frame <paramref name="version"/>.
+            </summary>
+            <param name="version">Version of the header.</param>
+            <param name="data">Orientation data.</param>
+            <returns>The <see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/> for <paramref name="data"/> of frame <paramref name="version"/>.</returns>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.AnimationHeaderExtensions">
+            <summary>
+            Animation header extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.AnimationHeaderExtensions.ToString(Enflux.SDK.DataTypes.AnimationHeaderV4)">
+            <summary>
+            Returns a string that represents the <see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/>.
+            </summary>
+            <param name="header">The animation header.</param>
+            <returns>A string that represents the <see cref="T:Enflux.SDK.DataTypes.AnimationHeaderV4"/>.</returns>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.DeviceState">
+            <summary>
+            State of an orientation device.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.Disconnected">
+            <summary>
+            Disconnected and not paired.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.Paired">
+            <summary>
+            Has been paired before in bluetooth manager &amp; computer has acknowledged device exists. Device is not currently connected.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.Connected">
+            <summary>
+            Connected in bluetooth manager, and device is ready to stream or calibrate.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.InitializingStreaming">
+            <summary>
+            Initializing streaming. User must stay still.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.InitializingCalibration">
+            <summary>
+            Initializing calibration. User must stay still.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.Streaming">
+            <summary>
+            Streaming realtime orientations.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.DeviceState.Calibrating">
+            <summary>
+            Calibrating the garment. Roll garment in a ball and rotate in every possible direction until finished.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.EnfluxSampleVector3">
+            <summary>
+            A frame of an Enflux device's orientations in degrees.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.TimeMs">
+            <summary>
+            Current time in milliseconds.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.Center">
+            <summary>
+            Center orientation.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.LeftUpper">
+            <summary>
+            Left upper orientation.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.LeftLower">
+            <summary>
+            Left lower orientation.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.RightUpper">
+            <summary>
+            Right upper orientation.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.EnfluxSampleVector3.RightLower">
+            <summary>
+            Right lower orientation.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.EnfluxSampleVector3.Lerp(Enflux.SDK.DataTypes.EnfluxSampleVector3,Enflux.SDK.DataTypes.EnfluxSampleVector3,System.Single)">
+            <summary>
+            Linearly interpolates between two roll, pitch, yaw frames.
+            Interpolates between the frames <paramref name="from"/> and <paramref name="to"/> by the interpolant <paramref name="t"/>. <paramref name="t"/> is clamped to the range [0f, 1f]. 
+            When t = 0f, returns <paramref name="from"/>. When t = 1f, returns <paramref name="to"/>. When t = 0.5f, returns the frame halfway between <paramref name="from"/> and <paramref name="to"/>.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.EnfluxSampleVector3.LerpUnclamped(Enflux.SDK.DataTypes.EnfluxSampleVector3,Enflux.SDK.DataTypes.EnfluxSampleVector3,System.Single)">
+            <summary>
+            Linearly interpolates between two roll, pitch, yaw frames.
+            Interpolates between the frames <paramref name="from"/> and <paramref name="to"/> by the interpolant <paramref name="t"/>.
+            When t = 0f, returns <paramref name="from"/>. When t = 1f, returns <paramref name="to"/>. When t = 0.5f, returns the frame halfway between <paramref name="from"/> and <paramref name="to"/>.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.EnfluxSampleVector3.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.HumanoidLimbType">
+            <summary>
+            Humanoid limb types.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.Pelvis">
+            <summary>
+            The pelvis.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftThigh">
+            <summary>
+            The left thigh.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightThigh">
+            <summary>
+            The right thigh.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftShin">
+            <summary>
+            The left shin.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightShin">
+            <summary>
+            The right shin.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftFoot">
+            <summary>
+            The left foot.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightFoot">
+            <summary>
+            The right foot.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.Spine">
+            <summary>
+            The spine bone.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.Chest">
+            <summary>
+            The chest.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.Neck">
+            <summary>
+            The neck.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.Head">
+            <summary>
+            The head.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftCollar">
+            <summary>
+            The left collar.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightCollar">
+            <summary>
+            The right collar.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftArm">
+            <summary>
+            The left arm.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightArm">
+            <summary>
+            The right arm.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftForearm">
+            <summary>
+            The left forearm.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightForearm">
+            <summary>
+            The right forearm.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftHand">
+            <summary>
+            The left wrist.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightHand">
+            <summary>
+            The right wrist.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftToes">
+            <summary>
+            The left toes.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightToes">
+            <summary>
+            The right toes.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftThumbProximal">
+            <summary>
+            The left thumb proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftThumbIntermediate">
+            <summary>
+            The left thumb intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftThumbDistal">
+            <summary>
+            The left thumb distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftIndexProximal">
+            <summary>
+            The left index proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftIndexIntermediate">
+            <summary>
+            The left index intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftIndexDistal">
+            <summary>
+            The left index distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftMiddleProximal">
+            <summary>
+            The left middle proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftMiddleIntermediate">
+            <summary>
+            The left middle intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftMiddleDistal">
+            <summary>
+            The left middle distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftRingProximal">
+            <summary>
+            The left ring proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftRingIntermediate">
+            <summary>
+            The left ring intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftRingDistal">
+            <summary>
+            The left ring distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftPinkyProximal">
+            <summary>
+            The left pinky proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftPinkyIntermediate">
+            <summary>
+            The left pinky intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.LeftPinkyDistal">
+            <summary>
+            The left pinky distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightThumbProximal">
+            <summary>
+            The right thumb proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightThumbIntermediate">
+            <summary>
+            The right thumb intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightThumbDistal">
+            <summary>
+            The right thumb distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightIndexProximal">
+            <summary>
+            The right index proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightIndexIntermediate">
+            <summary>
+            The right index intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightIndexDistal">
+            <summary>
+            The right index distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightMiddleProximal">
+            <summary>
+            The right middle proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightMiddleIntermediate">
+            <summary>
+            The right middle intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightMiddleDistal">
+            <summary>
+            The right middle distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightRingProximal">
+            <summary>
+            The right ring proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightRingIntermediate">
+            <summary>
+            The right ring intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightRingDistal">
+            <summary>
+            The right ring distal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightPinkyProximal">
+            <summary>
+            The right pinky proximal joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightPinkyIntermediate">
+            <summary>
+            The right pinky intermediate joint.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.HumanoidLimbType.RightPinkyDistal">
+            <summary>
+            The right pinky distal joint.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.InvalidEnflException">
+            <inheritdoc />
+            <summary>
+            Exception representing an invalid .enfl file.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.InvalidEnflException.#ctor">
+            <inheritdoc />
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.InvalidEnflException.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Constructor.
+            </summary>
+            <param name="message">Exception message.</param>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.ModulePlacement">
+            <summary>
+            Placement of a sensor.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.ModulePlacement.Front">
+            <summary>
+            Placed on the front.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.ModulePlacement.Back">
+            <summary>
+            Placed on the back.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.RPY">
+            <summary>
+            Representation of roll, pitch, and yaw in radians (legacy).
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.DataTypes.RPY.Roll">
+            <summary>
+            Amount of roll in radians.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.DataTypes.RPY.Pitch">
+            <summary>
+            Amount of pitch in radians.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.DataTypes.RPY.Yaw">
+            <summary>
+            Amount of yaw in radians.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.DataTypes.RPY.IsIdentity">
+            <summary>
+            Is this an identity RPY (magnitude is zero)?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.FromNedSpaceEuler(Enflux.SDK.DataTypes.RPY)">
+            <summary>
+            Gets a quaternion representation from this RPY.
+            </summary>
+            <param name="euler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="roll">Amount of roll in radians.</param>
+            <param name="pitch">Amount of pitch in radians.</param>
+            <param name="yaw">Amount of yaw in radians.</param>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.RPY.ModuleAngles">
+            <summary>
+            Represents RPY values for Enflux devices (legacy).
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.RPY.ModuleAngles.Center">
+            <summary>
+            Center sensor.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.RPY.ModuleAngles.LeftUpper">
+            <summary>
+            Left upper arm sensor.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.RPY.ModuleAngles.LeftLower">
+            <summary>
+            Left lower arm sensor.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.RPY.ModuleAngles.RightUpper">
+            <summary>
+             Right upper arm sensor.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.RPY.ModuleAngles.RightLower">
+            <summary>
+            Right lower arm sensor.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.ModuleAngles.#ctor(Enflux.SDK.DataTypes.RPY,Enflux.SDK.DataTypes.RPY,Enflux.SDK.DataTypes.RPY,Enflux.SDK.DataTypes.RPY,Enflux.SDK.DataTypes.RPY)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="center">Center sensor.</param>
+            <param name="leftUpper">Left upper arm sensor.</param>
+            <param name="leftLower">Left lower arm sensor.</param>
+            <param name="rightUpper">Right upper arm sensor.</param>
+            <param name="rightLower">Right lower arm sensor.</param>
+        </member>
+        <member name="P:Enflux.SDK.DataTypes.RPY.ModuleAngles.IsInitialized">
+            <summary>
+            Are the sensor values initialized?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.ParseDataForOrientationAngles(System.Byte[])">
+            <summary>
+            Converts <paramref name="bleData"/> into <see cref="T:Enflux.SDK.DataTypes.RPY.ModuleAngles"/>.
+            </summary>
+            <param name="bleData">RPY orientations corresponding to a <see cref="T:Enflux.SDK.DataTypes.RPY.ModuleAngles"/>.</param>
+            <returns>A <see cref="T:Enflux.SDK.DataTypes.RPY.ModuleAngles"/> from <paramref name="bleData"/>.</returns>
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.DataTypes.RPY.ToDegreesString">
+            <summary>
+            Gets a string with the angles in degrees.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.DataTypes.BatteryFlags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.BatteryFlags.Unknown">
+            <summary>
+            The battery level is unknown or unavilable.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.BatteryFlags.Critical">
+            <summary>
+            The battery level critically low (such as &lt;= 15%).
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.BatteryFlags.Low">
+            <summary>
+            The battery level low (such as &lt;= 25%).
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.DataTypes.BatteryFlags.Normal">
+            <summary>
+            The battery level is at a normal amount (such as &gt; 25%).
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.Devices.EnfluxDevice">
+            <inheritdoc />
+            <summary>
+            Abstract class representing an Enflux device that streams orientations.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.EnfluxDevice.IsInitialized">
+            <inheritdoc />
+            <summary>
+            To be initialized, a device must receive new orientations anytime after starting streaming.
+            Since the orientations of a device are persisted after stopping streaming, this ensures that
+            device initialization isn't incorrectly detected from old orientation data.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.EnfluxDevice.DeviceFlag">
+            <summary>
+            Device flag that represents this device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.EnfluxDevice.RequestedStreaming">
+            <summary>
+            Did this device request to start streaming?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.#ctor(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.String)">
+            <inheritdoc />
+            <summary>
+            Constructor.
+            </summary>
+            <param name="deviceFlag">Device flag representing this device.</param>
+            <param name="name">Name of this device.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnStateChanged(Enflux.SDK.Core.Devices.OrientationDevice,Enflux.SDK.Core.StateChange{Enflux.SDK.DataTypes.DeviceState})">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnSensorOrientationChanged(Enflux.SDK.Core.Devices.OrientationSensor,UnityEngine.Quaternion)">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.HandleInputCommand(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Update the device's state based on the input command.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnPressedButton(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device's button is pressed.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnSetDeviceType(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device's internal device type changes.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationFinished(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device finishes calibration.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationStarted(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device starts calibration.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnStreamingStarted(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device starts streaming.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnStreamingFinished(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device finishes streaming.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnDevicePaired(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device is paired in the bluetooth manager.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnDeviceConnected(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device is connected in the bluetooth manager.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationInitialized(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device initializes calibration.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnDeclinedEulaError(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the user declines the Enflux End User License Agreement.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationDisconnectedError(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device disconnects when calibrating.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationMissingError(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device doesn't have a calibration yet.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnUnknownDeviceError(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device's internal device type isn't set.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnCalibrationFailedError(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device fails to calibrate.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnRequestedStreaming(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device requests to start streaming.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.OnResetHeading(Enflux.Common.DataTypes.InputCommands)">
+            <summary>
+            Handler when the device resets its initial heading.
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.EnfluxDevice.GenerateFlags(System.Collections.Generic.IEnumerable{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Gets the <see cref="T:Enflux.Common.DataTypes.EnfluxDeviceFlags"/> representing the collection of <see cref="T:Enflux.SDK.Core.Devices.EnfluxDevice"/>.
+            </summary>
+            <param name="devices"></param>
+            <returns><see cref="T:Enflux.Common.DataTypes.EnfluxDeviceFlags"/> representing the collection of <see cref="T:Enflux.SDK.Core.Devices.EnfluxDevice"/>.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Core.Devices.OrientationDevice">
+            <summary>
+            Abstract class representing a device that contains sensors that stream orientations.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.Name">
+            <summary>
+            Name of this device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.PowerInfo">
+            <summary>
+            Power information of this device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.State">
+            <summary>
+            Current operating state of this device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.Sensors">
+            <summary>
+            All the orientation sensors that this device contains.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.IsInitialized">
+            <summary>
+            Is the device in an initialized state?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.IsReady">
+            <summary>
+            Is the device connected and ready to start streaming orientations, calibrating, etc?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.IsActive">
+            <summary>
+            Is the device connected and doing anything (streaming orientations, calibrating, etc)?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.IsStreamingInitiated">
+            <summary>
+            Is the device initiating streaming orientations?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationDevice.IsCalibratingInitiated">
+            <summary>
+            Is the device initiating a calibration?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">Name of the device.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.OnStateChanged(Enflux.SDK.Core.Devices.OrientationDevice,Enflux.SDK.Core.StateChange{Enflux.SDK.DataTypes.DeviceState})">
+            <summary>
+            Handler to update the device when its operating state changes.
+            </summary>
+            <param name="device">This instance.</param>
+            <param name="stateChange">The state change.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.OnSensorOrientationChanged(Enflux.SDK.Core.Devices.OrientationSensor,UnityEngine.Quaternion)">
+            <summary>
+            Handler to update the device when one of its sensor's orientation changes.
+            </summary>
+            <param name="sensor">The sensor whose orientation changed.</param>
+            <param name="orientation">The updated orientation.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.AddSensor(Enflux.SDK.Core.Devices.OrientationSensor)">
+            <summary>
+            Add a sensor to this device's internal list.
+            </summary>
+            <param name="sensor">Sensor to add.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.RemoveSensor(Enflux.SDK.Core.Devices.OrientationSensor)">
+            <summary>
+            Remove a sensor from this device's internal list.
+            </summary>
+            <param name="sensor">Sensor to remove.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.ResetHeading">
+            <summary>
+            Resets the heading of all orientation sensors in this device.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.CalculateAlignment">
+            <summary>
+            Calculates an alignment for all orientation sensors in this device.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.ResetAlignment">
+            <summary>
+            Resets the alignment for all orientation sensors in this device.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationDevice.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Core.Devices.OrientationSensor">
+            <inheritdoc />
+            <summary>
+            A sensor that streams orientations.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.Name">
+            <summary>
+            Name of this sensor.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.Orientation">
+            <inheritdoc />
+            <summary>
+            Current orientation of this sensor.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.Alignment">
+            <inheritdoc />
+            <summary>
+            Current orientation offset of this sensor from its real-world orientation. 
+            Alignment is used to compensate for expected sensor placement versus actual sensor placement. 
+            </summary>
+            <remarks>
+            Since every person has different limb widths, and sensors may not always be fastened in the 
+            "perfect placement" on their body, this orientation offset is used to account for these differences.
+            </remarks>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.AlignmentBasis">
+            <summary>
+            The orientation of the sensor when an alignment was calculated.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.Heading">
+            <inheritdoc />
+            <summary>
+            The initial orientation of the sensor.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.TechnicalFrame">
+            <summary>
+            The alignment technical frame.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.OrientationSensor.IsInitialized">
+            <inheritdoc />
+            <summary>
+            Is the sensor in an initialized state?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationSensor.CalculateAlignment">
+            <summary>
+            Calculates an alignment for the sensor based on its current orientation.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationSensor.CalculateAlignment(UnityEngine.Quaternion)">
+            <summary>
+            Calculates an alignment from the sensor.
+            </summary>
+            <param name="basisOrientation">The orientation of the sensor.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationSensor.CalculateAlignment(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>
+            Calculates an alignment from the sensor.
+            </summary>
+            <param name="basisOrientation">The orientation of the sensor.</param>
+            <param name="technicalFrame">The technical frame of the sensor.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationSensor.ResetAlignment">
+            <summary>
+            Discards the current sensor alignment.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.OrientationSensor.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Core.Devices.PowerInfo">
+            <summary>
+            Information about about power state.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Devices.PowerInfo.BatteryLevelChanged">
+            <summary>
+            Event for when the battery level changed.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Devices.PowerInfo.BatteryFlagsChanged">
+            <summary>
+            Event for when the battery flags changed.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.BatteryLevel">
+            <summary>
+            Normalized battery level in range [0.0, 1.0].
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.BatteryFlags">
+            <summary>
+            Flags describing battery state.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.IsBatteryAvailable">
+            <summary>
+            Is the battery available?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.IsBatteryUnknown">
+            <summary>
+            Is the battery unknown?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.IsBatteryCritical">
+            <summary>
+            Is the battery in a critical state?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.IsBatteryLow">
+            <summary>
+            Is the battery in a low state?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Devices.PowerInfo.IsBatteryNormal">
+            <summary>
+            Is the battery in a normal state?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Devices.PowerInfo.SetBatteryLevelAndFlags(System.Single,Enflux.SDK.DataTypes.BatteryFlags)">
+            <summary>
+            Simultaneously sets the battery level and the battery flags.
+            </summary>
+            <param name="batteryLevel"></param>
+            <param name="flags"></param>
+        </member>
+        <member name="T:Enflux.SDK.Core.EnfluxManager">
+            <inheritdoc />
+            <summary>
+            Handles the state of individual Enflux clothing and provides methods to stream, calibrate, and align shirt, pants, and other clothing.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.EnfluxManager.ResetHeadingOnButtonPress">
+            <summary>
+            Should we reset heading on shortly pressing the suit button? Set to false if you wish to use the button differently.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxManager.NedOrientations">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxManager.DevicesWaitingToStream">
+            <summary>
+            <see cref="T:Enflux.Common.DataTypes.EnfluxDeviceFlags"/> representing all devices that are waiting to stream via <see cref="M:Enflux.SDK.Core.EnfluxManager.StartStreaming(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.Single)"/>. 
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxManager.IsAnyDeviceWaitingToStream">
+            <summary>
+            Is any device waiting to stream via <see cref="M:Enflux.SDK.Core.EnfluxManager.StartStreaming(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.Single)"/>? 
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxManager.RemainingWaitingToStreamTime">
+            <summary>
+            If any device waiting to stream via <see cref="M:Enflux.SDK.Core.EnfluxManager.StartStreaming(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.Single)"/>, what is the remaining wait time?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxManager.TotalWaitingToStreamTime">
+            <summary>
+            If any device waiting to stream via <see cref="M:Enflux.SDK.Core.EnfluxManager.StartStreaming(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.Single)"/>, what is the total wait time?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.OnEnable">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.OnDisable">
+            <inheritdoc />
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.Update">
+            <summary>
+             Do not call. Used internally by the Enflux SDK. Updates the state of all devices for the manager. 
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.StartScanning(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Set <paramref name="deviceFlags"/> into scanning mode. The device stops streaming or calibrating and only sends events.
+            </summary>
+            <param name="deviceFlags"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.StartStreaming_Internal(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Immediately sets <paramref name="deviceFlags"/> into streaming mode. When streaming, the device starts streaming orientations and sends events.
+            It's important for the user to get into the proper pose before starting streaming and remain still during streaming initialization. Movement during 
+            streaming initialization will result in drift and poor tracking, so you usually want to use QueueStreaming() instead with a UI prompt informing the user to remain still.
+            </summary>
+            <param name="deviceFlags">Enum with all devices to start streaming.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.StartStreaming(Enflux.Common.DataTypes.EnfluxDeviceFlags,System.Single)">
+            <summary>
+            Sets <paramref name="deviceFlags"/> into streaming mode after <paramref name="waitTime"/> seconds. When streaming, the device starts streaming orientations and sends events.
+            It's important for the user to get into the proper pose before starting streaming and remain still during streaming initialization. Movement during 
+            streaming initialization will result in drift and poor tracking, so you usually want to use QueueStreaming() instead with a UI prompt informing the user to remain still.
+            </summary>
+            <param name="deviceFlags">Enum with all devices to start streaming.</param>
+            <param name="waitTime">Real world seconds to wait until starting streaming for <paramref name="deviceFlags"/>. This is not affected by Time.timeScale.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.StopWaitingToStream(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Unqueues streaming for all queued devices in <paramref name="deviceFlags"/>.
+            </summary>
+            <param name="deviceFlags">Enum with all devices to unqueue.</param>
+            <returns>Boolean indicating if all requested devices were able to be unqueued.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.StartCalibrating(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Set <paramref name="deviceFlags"/> into calibration mode. The device starts the calibration procedure to minimize drift and also sends events.
+            For a good calibration, curl the device into a ball and continuously rotate it in every possible rotation until receiving a finished event.
+            A bad calibration will result in drift and poor tracking.
+            </summary>
+            <param name="deviceFlags">Enum with all devices to start calibrating.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.AreWaitingToStream(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Are all devices in <paramref name="flags"/> waiting to stream?
+            </summary>
+            <param name="flags">Devices to check whether waiting to stream.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxManager.GetCurrentDevices(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Gets a List of all current devices in <paramref name="flags"/>.
+            </summary>
+            <param name="flags"></param>
+            <returns>List of all current devices in <paramref name="flags"/>.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Core.EnfluxSuitStream">
+            <summary>
+            Provides humanoid orientations in real world North-East-Down (NED) space, the starting orientation of each device,
+            and outputs events for device state, device notifications, and device errors.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.EnfluxSuitStream.Devices">
+            <summary>
+            All devices that this suit stream has access to.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Core.EnfluxSuitStream.DeviceStateChanged">
+            <summary>
+            Event for when a device's state changed.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Core.EnfluxSuitStream.DeviceReceivedInputCommand">
+            <summary>
+            Event for when a device received an input command.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Core.EnfluxSuitStream.AlignmentStateChanged">
+            <summary>
+            Event for when the alignment state changed.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Core.EnfluxSuitStream.AlignmentReceivedNotification">
+            <summary>
+            Event for alignment notifications.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.NedOrientations">
+            <summary>
+            The suit's limb orientations in North-East-Down (NED) real world coordinates.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.CurrentShirt">
+            <summary>
+            First accessible shirt device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.CurrentPants">
+            <summary>
+            First accessible pants device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.CurrentHeadband">
+            <summary>
+            First accessible headband device.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.IsAnyDeviceReady">
+            <summary>
+            Is any device connected and ready to start streaming or calibrating?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.AreAllDevicesUnavailable">
+            <summary>
+            Are all devices in an unavailable state (not connected or active)?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.IsAnyDeviceActive">
+            <summary>
+            Is any device connected and doing anything (streaming, calibrating, etc)?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.IsAnyDeviceStreaming">
+            <summary>
+            Is any device currently streaming?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.AlignmentState">
+            <summary>
+            Current alignment state.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.AlignmentType">
+            <summary>
+            Current alignment type.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.RemainingAlignmentCountdownTime">
+            <summary>
+            Remaining countdown time in seconds until aligning.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.EnfluxSuitStream.AlignmentCountdownTime">
+            <summary>
+            Total countdown time until aligning.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.OnEnable">
+            <summary>
+            This function is called when the object becomes enabled and active.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.OnDisable">
+            <summary>
+            This function is called when the behaviour becomes disabled () or inactive.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.DeviceOnDeviceStateChanged(Enflux.SDK.Core.Devices.OrientationDevice,Enflux.SDK.Core.StateChange{Enflux.SDK.DataTypes.DeviceState})">
+            <summary>
+            Handler for when a device's state changes.
+            </summary>
+            <param name="enfluxDevice"></param>
+            <param name="stateChange"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.DeviceOnReceivedInputCommand(Enflux.SDK.Core.Devices.EnfluxDevice,Enflux.SDK.Core.Notification{Enflux.Common.DataTypes.InputCommands})">
+            <summary>
+            Handler for when a device received an input command.
+            </summary>
+            <param name="enfluxDevice"></param>
+            <param name="inputCommand"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.RaiseAlignmentNotificationEvent(Enflux.SDK.DataTypes.AlignmentNotification)">
+            <summary>
+            Raise an event for an alignment notification.
+            </summary>
+            <param name="alignmentNotification"></param>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.GetCurrentDevice``1(Enflux.Common.DataTypes.EnfluxDeviceFlags)">
+            <summary>
+            Returns the current device (if any) of <paramref name="deviceFlags"/>.
+            </summary>
+            <typeparam name="T">The concrete type of the EnfluxDevice.</typeparam>
+            <param name="deviceFlags">The enum flag of the device.</param>
+            <returns>The current device of <paramref name="deviceFlags"/>, null if none are available.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.GetAllDevices">
+            <summary>
+            Get a List of all devices.
+            </summary>
+            <returns>List containing all devices.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.GetCurrentDevices">
+            <summary>
+            Get a List of all current devices. "Current" devices are the first devices in each list of each EnfluxDeviceType.
+            </summary>
+            <returns>List containing current devices.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.IsAnyDevice(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Query if any device meets the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.IsAnyCurrentDevice(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Query if any current device meets the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.AreAllDevices(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Query if all devices meet the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.AreAllCurrentDevices(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Query if all current devices meet the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.GetAllDevicesWhere(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Returns a List of all devices which meet the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.GetCurrentDevicesWhere(System.Predicate{Enflux.SDK.Core.Devices.EnfluxDevice})">
+            <summary>
+            Returns a List of current all devices which meet the criteria of <paramref name="predicate"/>.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.StartAlignment(System.Single)">
+            <summary>
+            Start the alignment sequence. The sequence waits <paramref name="countdownTime"/> seconds for the user to get in a T-Pose then aligns the
+            sensors to the user's body for better tracking. NOTE: If the user's pose is incorrect when the alignment is calculated, poor tracking will be occur.
+            </summary>
+            <remarks>
+            Since every person is different, an alignment is meant to compensate for small variances in wearing the sensors versus expected sensor placement.
+            A sufficient <paramref name="countdownTime"/> is extremely important so the user has enough time to get in the proper pose for a good alignment.
+            A minimum <paramref name="countdownTime"/> is enforced.
+            </remarks>
+            <param name="countdownTime">Time in seconds until performing the alignment.</param>
+            <returns>bool indicated whether alignment was successfully started.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.StopAlignment">
+            <summary>
+            Stops any alignment sequence in progress.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.ResetAlignment">
+            <summary>
+            Resets alignment to default values. The default alignment corrects chest and pelvis, but not limbs.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.EnfluxSuitStream.ResetFullBodyHeading">
+            <summary>
+            Sets shirt heading to the current orientation of the shirt's chest module and pants heading to the current orientation of the pant's waist module.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.Humanoid">
+            <inheritdoc />
+            <summary>
+            Transforms world sensor orientations into local orientations for a humanoid body structure.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.Humanoid.AlignmentSettings">
+            <summary>
+            Per-limb settings to enable using alignment.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.Chest">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.LeftUpperArm">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.LeftLowerArm">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.RightUpperArm">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.RightLowerArm">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.Pelvis">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.LeftUpperLeg">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.LeftLowerLeg">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.RightUpperLeg">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.RightLowerLeg">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.AlignmentSettings.Head">
+            <summary>
+            Use alignment for this body part?
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.SuitStream">
+            <summary>
+            The source of the NED orientations used to calculate local orientations for each limb.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.Humanoid.UseAlignment">
+            <summary>
+            Per-limb settings to toggle using alignment.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.HumanoidOrientations">
+            <summary>
+            Generic container with orientation streams of humanoid limbs. 
+            The orientations should all be in the same consistent coordinate space (whether NED orientations, local orientations, ect.)
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.Chest">
+            <summary>
+            Orientation stream for the chest.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.LeftUpperArm">
+            <summary>
+            Orientation stream for the left shoulder.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.LeftLowerArm">
+            <summary>
+            Orientation stream for the left elbow.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.RightUpperArm">
+            <summary>
+            Orientation stream for the right shoulder.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.RightLowerArm">
+            <summary>
+            Orientation stream for the right elbow.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.Pelvis">
+            <summary>
+            Orientation stream for the pelvis.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.LeftUpperLeg">
+            <summary>
+            Orientation stream for the left hip.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.LeftLowerLeg">
+            <summary>
+            Orientation stream for the left knee.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.RightUpperLeg">
+            <summary>
+            Orientation stream for the right hip.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.RightLowerLeg">
+            <summary>
+            Orientation stream for the right knee.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.HumanoidOrientations.Head">
+            <summary>
+            Orientation stream for the head.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Core.HumanoidOrientations.PantsModulePlacement">
+            <summary>
+            Placement of the pelvis sensor.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.HumanoidOrientations.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.HumanoidOrientations.#ctor(Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream,Enflux.SDK.Core.IOrientationStream)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.HumanoidOrientations.GetOrientationStream(Enflux.SDK.DataTypes.HumanoidLimbType)">
+            <summary>
+            Gets the orientation stream corresponding to <paramref name="limbType"/>
+            </summary>
+            <param name="limbType">The type of limb.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Core.HumanoidOrientations.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Core.IOrientationStream">
+            <summary>
+            Defines a stream of orientations.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Core.IOrientationStream.OrientationChanged">
+            <summary>
+            Event when the current orientation changes.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.IOrientationStream.IsInitialized">
+            <summary>
+            Is the stream in an initialized state?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.IOrientationStream.Orientation">
+            <summary>
+            The current orientation of the stream.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.IOrientationStream.Heading">
+            <summary>
+            Current heading of the stream.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.IOrientationStream.Alignment">
+            <summary>
+            Current alignment offset of the stream.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.Notification`1">
+            <summary>
+            Represents an event with a value and a description message.
+            </summary>
+            <typeparam name="T">The type of the notification value.</typeparam>
+        </member>
+        <member name="M:Enflux.SDK.Core.Notification`1.#ctor(`0,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="value">Value of the notification.</param>
+            <param name="message">Description message of the notification.</param>
+        </member>
+        <member name="P:Enflux.SDK.Core.Notification`1.Value">
+            <summary>
+            Value of the notification.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Notification`1.Message">
+            <summary>
+            Description message of the notification.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.Notification`1.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Core.OrientationStream">
+            <inheritdoc />
+        </member>
+        <member name="E:Enflux.SDK.Core.OrientationStream.OrientationChanged">
+            <summary>
+            Event fired when the current orientation changes.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.OrientationStream.IsInitialized">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Core.OrientationStream.Orientation">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Core.OrientationStream.Alignment">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Core.OrientationStream.Heading">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Core.Skeleton">
+            <summary>
+            Contains bone orientations in the local space of a humanoid.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.Skeleton.LocalOrientations">
+            <summary>
+            The orientations of each limb in the skeleton relative to its parent limb.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Core.StateChange`1">
+            <summary>
+            Represents 
+            </summary>
+            <typeparam name="T">The type of the state value.</typeparam>
+        </member>
+        <member name="P:Enflux.SDK.Core.StateChange`1.Previous">
+            <summary>
+            The previous state.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Core.StateChange`1.Next">
+            <summary>
+            The new state.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Core.StateChange`1.#ctor(`0,`0)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="previous">The previous state.</param>
+            <param name="next">The next state.</param>
+        </member>
+        <member name="M:Enflux.SDK.Core.StateChange`1.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Enflux.SDK.Extensions.EnumExtensions">
+            <summary>
+            Enum extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.EnumExtensions.HasFlag(System.Enum,System.Enum)">
+            <summary>
+            Check to see if a flags enumeration has a specific flag set.
+            </summary>
+            <param name="variable">Flags enumeration to check</param>
+            <param name="value">Flag to check for</param>
+            <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.Extensions.GameObjectExtensions">
+            <summary>
+            GameObject extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.GameObjectExtensions.FindChildComponent``1(UnityEngine.GameObject,System.String)">
+            <summary>
+            Returns the component of type <typeparamref name="T"/> (if any) from the child named <paramref name="childName"/>. Searches the whole GameObject hierarchy, including inactive children.
+            </summary>
+            <typeparam name="T">The type of component to return.</typeparam>
+            <param name="go">GameObject to search.</param>
+            <param name="childName">The name of the child to find.</param>
+            <returns>The component of type <typeparamref name="T"/> from the child named <paramref name="childName"/> if it exists, null otherwise.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Extensions.QuaternionExtensions">
+            <summary>
+            Quaternion extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.Magnitude(UnityEngine.Quaternion)">
+            <summary>
+            Returns the magnitude of this quaternion.
+            </summary>
+            <param name="q"></param>
+            <returns>The magnitude of this quaternion.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.Normalize(UnityEngine.Quaternion)">
+            <summary>
+            Normalizes this quaternion in-place.
+            </summary>
+            <param name="q">This quaternion.</param>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.Normalized(UnityEngine.Quaternion)">
+            <summary>
+            Returns a copy of this quaternion normalized.
+            </summary>
+            <param name="q">This quaternion.</param>
+            <returns>A copy of this quaternion normalized.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.ToVector4(UnityEngine.Quaternion,System.Boolean)">
+            <summary>
+            Converts this Quaternion into a Vector4.
+            </summary>
+            <param name="q">This quaternion.</param>
+            <param name="orderAsXYZW">Order as XYZW if true, otherwise as WXYZ.</param>
+            <returns>A Vector 4 representation of this quaterion.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.ToQuaternion(UnityEngine.Vector4,System.Boolean)">
+            <summary>
+            Converts this Vector4 into a Quaternion.
+            </summary>
+            <param name="v">This Vector4.</param>
+            <param name="orderAsXYZW">Treating ordering as XYZW if true, otherwise as WXYZ.</param>
+            <returns>A Quaternion representation of this Vector4.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionExtensions.IsZero(UnityEngine.Quaternion)">
+            <summary>
+            Is this quaternion filled with zero components?
+            </summary>
+            <param name="q">This quaternion.</param>
+            <returns>bool if this Quaternion's components are all zero.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Extensions.QuaternionFExtensions">
+            <summary>
+            QuaternionF extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionFExtensions.ToUnityQuaternion(Enflux.Common.DataTypes.QuaternionF)">
+            <summary>
+            Returns a Unity Quaternion version of this QuaternionF.
+            </summary>
+            <param name="q">This QuaternionF.</param>
+            <returns>Unity Quaternion version of this QuaternionF.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.QuaternionFExtensions.ToQuaternionF(UnityEngine.Quaternion)">
+            <summary>
+            Returns a QuaternionF version of this Unity Quaternion.
+            </summary>
+            <param name="q">This Unity Quaternion.</param>
+            <returns>QuaternionF version of this Unity Quaternion.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Extensions.ShortVector3Extensions">
+            <summary>
+            ShortVector3 extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.ShortVector3Extensions.ToUnityVector3(Enflux.Common.DataTypes.ShortVector3)">
+            <summary>
+            Returns a Unity Vector3 version of this ShortVector3.
+            </summary>
+            <param name="v">This ShortVector3.</param>
+            <returns>Unity Quaternion version of this ShortVector3.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.ShortVector3Extensions.ToShortVector3(UnityEngine.Vector3)">
+            <summary>
+            Returns a ShortVector3 version of this Unity Quaternion.
+            </summary>
+            <param name="v">This Unity Quaternion.</param>
+            <returns>ShortVector3 version of this Unity Quaternion.</returns>
+        </member>
+        <member name="T:Enflux.SDK.Extensions.StringExtensions">
+            <summary>
+            String extension methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.StringExtensions.Nicify(System.Enum)">
+            <summary>
+                "Nicifies" enum, adding spaces before every uppercase character after the first character.
+                Spaces won't be added between consecutive uppercase characters to preserve acronyms.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Extensions.StringExtensions.Nicify(System.String)">
+            <summary>
+                "Nicifies" string, adding spaces before every uppercase character after the first character.
+                Spaces won't be added between consecutive uppercase characters to preserve acronyms.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Recording.EnfluxFilePlayer">
+            <inheritdoc />
+            <summary>
+            Plays back .enfl files. Current orientations are accessible through <see cref="P:Enflux.SDK.Recording.EnfluxFilePlayer.NedOrientations" />. During playback, the file data is streamed from disk.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Recording.EnfluxFilePlayer.DataSource">
+            <summary>
+            Location to load the file.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.StateChanged">
+            <summary>
+            Invoked when the state of the file player has changed.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.PlaybackReceivedError">
+            <summary>
+            Invoked when the file player has received an error.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.LastFramePlayed">
+            <summary>
+            Invoked when the last frame played, regardless of looping.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.SpeedChanged">
+            <summary>
+            Invoked when the playback rate has changed.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.IsLoopingChanged">
+            <summary>
+            Invoked when looping has changed.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFilePlayer.AutoplayOnLoadChanged">
+            <summary>
+            Invoked when autoplay has changed.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.NedOrientations">
+            <inheritdoc />
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.State">
+            <summary>
+            The current operation state of the playback.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.CurrentTime">
+            <summary>
+            Current time of the playback in seconds.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.CurrentTimeMs">
+            <summary>
+            Current time of the playback in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.CurrentTimeNormalized">
+            <summary>
+            Current time of the playback in normalized time. 0 is the first frame of playback, 1 is the last frame.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.Duration">
+            <summary>
+            Total duration of the playback in seconds.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.DurationMs">
+            <summary>
+            Total duration of the playback in milliseconds.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.NumShirtFrames">
+            <summary>
+            Total number of shirt frames of the playback.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.NumPantsFrames">
+            <summary>
+            Total number of pants frames of the playback.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.NumHeadFrames">
+            <summary>
+            Total number of pants frames of the playback.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.Speed">
+            <summary>
+            Speed multiplier of the playback. Cannot be negative.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsLooping">
+            <summary>
+            Should playback loop instead of finishing?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.AutoplayOnLoad">
+            <summary>
+            Should playback start as soon as a file is loaded?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.Filename">
+            <summary>
+            The absolute path + name of the currently loaded playback file.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsUnloaded">
+            <summary>
+            Is there no playback file loaded?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsLoading">
+            <summary>
+            Is a playback file currently loading?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsLoaded">
+            <summary>
+            Is a playback file loaded and ready to play?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsPlaying">
+            <summary>
+            Is the playback currently playing?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsPaused">
+            <summary>
+            Is the playback currently paused?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsStopped">
+            <summary>
+            Is the playback stopped?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsFinished">
+            <summary>
+            Has the playback successfully finished?
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFilePlayer.IsError">
+            <summary>
+            Is the playback in an error state?
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.SeekNextFrame(System.IO.Stream,System.Int64,System.UInt32,Enflux.Common.DataTypes.EnfluxDeviceFlags,Enflux.SDK.Recording.EnfluxFilePlayer.QuaternionFrame@,System.Int64@)">
+            <summary>
+            Attempts to seek the next frame defined by a starting position, starting time, and device type.
+            </summary>
+            <param name="stream">Stream to seek in.</param>
+            <param name="startPosition">The starting position in <paramref name="stream"/></param>
+            <param name="startTimeMs">The starting time the next frame must start at.</param>
+            <param name="deviceFlagsFlags">The device type of the next frame.</param>
+            <param name="nextFrame">A reference to store the next frame in.</param>
+            <param name="endPosition">A reference to store the ending seeked position of the stream. If a next frame was found, this position is one byte after this frame.</param>
+            <returns>bool indicating a matching next frame was found.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.SetFramesToTime(System.UInt32)">
+            <summary>
+            Force both shirt and pants orientations to the frames at the specified time.
+            </summary>
+            <param name="timeMs">Time in millseconds to set frames to.</param>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.Load(System.String)">
+            <summary>
+            Loads a .enfl file at the specified absolute filepath. If a file is already loaded, then it is unloaded first.
+            </summary>
+            <param name="absoluteFilename">Path of the .enfl file to load.</param>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.LoadFromUrl(System.String)">
+            <summary>
+            Loads .enfl from <paramref name="url"/>.
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.Unload">
+            <summary>
+            Unloads the currently loaded .enfl file.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.Play">
+            <summary>
+            Plays the currently loaded .enfl file.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.Pause">
+            <summary>
+            Pauses the currently loaded .enfl file.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Recording.EnfluxFilePlayer.Stop">
+            <summary>
+            Stops the currently loaded .enfl file.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Recording.EnfluxFileRecorder">
+            <inheritdoc />
+            <summary>
+            Records .enfl files from current device orientations.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.EnfluxFileRecorder.Filename">
+            <summary>
+            Filename for the recording.
+            </summary>
+        </member>
+        <member name="E:Enflux.SDK.Recording.EnfluxFileRecorder.RecordingReceivedError">
+            <summary>
+            Invoked when the file recorder has received an error.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Recording.EnfluxFileRecorder.IsRecording">
+            <summary>
+            Is the file recorder currently recording?
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Recording.PlaybackState">
+            <summary>
+            Playback state.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Unloaded">
+            <summary>
+            The playback isn't loaded.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Loading">
+            <summary>
+            The playback is loading.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Stopped">
+            <summary>
+            The playback is stopped.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Playing">
+            <summary>
+            The playback is playing.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Paused">
+            <summary>
+            The playback is paused.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Finished">
+            <summary>
+            The playback is finished.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.Recording.PlaybackState.Error">
+            <summary>
+            The playback is encountering an error.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Utils.DeviceDisplayMetadata">
+            <summary>
+            Metadata for displaying device state.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Utils.PlaybackUtils">
+            <summary>
+            Playback utility methods.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.PlaybackUtils.ValidateEnflFile(System.String)">
+            <summary>
+            Validates the .enfl file at <paramref name="filename"/>. Throws an exception to signal an invalid file type
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:Enflux.SDK.Utils.PlaybackUtils.IsValidHeader(Enflux.SDK.DataTypes.AnimationHeaderV4)">
+            <summary>
+            Is <paramref name="header"/> valid?
+            </summary>
+            <param name="header"></param>
+        </member>
+        <member name="T:Enflux.SDK.Utils.QuaternionUtils">
+            <summary>
+            Quaternion utilities.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.QuaternionUtils.AreQuaternionsClose(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>
+            Returns true if <paramref name="q1"/> and <paramref name="q2"/> are close to each other. This can 
+            be used to check whether two quaternions which are supposed to be similar have component 
+            signs reversed (as q has the same rotation as -q).
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.QuaternionUtils.AverageQuaternion(UnityEngine.Vector4@,UnityEngine.Quaternion,UnityEngine.Quaternion,System.Int32)">
+            <summary>
+            Gets an average (mean) from more then two quaternions (with two, slerp would be used).
+            </summary>
+            <param name="cumulative">An external Vector4 which holds all the added x, y, z, and w components.</param>
+            <param name="newRotation">The next rotation to be added to the average pool.</param>
+            <param name="firstRotation">The first quaternion of the array to be averaged.</param>
+            <param name="numQuaternions">The total amount of quaternions which are currently added.</param>
+            <remarks>
+            Note: This only works if all the quaternions are relatively close together.
+            </remarks>
+        </member>
+        <member name="M:Enflux.SDK.Utils.QuaternionUtils.InverseSignQuaternion(UnityEngine.Quaternion)">
+            <summary>
+            Changes the sign of the quaternion components. This is not the same as the inverse.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.QuaternionUtils.UnpackQuaternion(System.Byte[],System.Int32)">
+            <summary>
+            Unpack the packed quaternion format from the module.
+            </summary>
+            <param name="arr"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.Utils.RigUtils">
+            <summary>
+            Rig utilities.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.RigUtils.ResolveLimb(UnityEngine.Transform,Enflux.SDK.DataTypes.HumanoidLimbType)">
+            <summary>
+            Attempts to search for a bone based on an internal naming scheme. Searches whole GameObject hierarchy of <paramref name="root"/>. Experimental and is meant for use in the Unity Editor only.
+            </summary>
+            <param name="root">Root bone.</param>
+            <param name="limbType">Limb type to serach for.</param>
+            <returns>Bone, if successfully found.</returns>
+        </member>
+        <member name="M:Enflux.SDK.Utils.RigUtils.ResolveLimbTransformByName(UnityEngine.Transform,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+             <summary>
+             Returns a child transform by taking a list of possible names, a list of possible prefixes/suffixes, and checking if the child transform's name matches a possible pattern. Allows a hypens, spaces, and underscores between the limb name and prefix/suffix. Doesn't check if capitalization is the same.
+            
+             Note that this method is not performant, as it greedily allocates memory as needed for checking each transform. 
+             </summary>
+             <param name="root"></param>
+             <param name="possibleLimbNames"></param>
+             <param name="possibleDirectionNames">List of possible prefixes or suffixes</param>
+             <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.Utils.TimeUtils">
+            <summary>
+            Time utilities.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Utils.TimeUtils.ApplicationTime">
+            <summary>
+            Current time in milliseconds since the application started.
+            </summary>
+        </member>
+        <member name="P:Enflux.SDK.Utils.TimeUtils.ApplicationTimeMs">
+            <summary>
+            Current time in milliseconds since the application started.
+            </summary>
+        </member>
+        <member name="T:Enflux.SDK.Utils.Vector3Utils">
+            <summary>
+            Vector3 utilities.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.Utils.Vector3Utils.LerpAngle(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Linearly interpolates between two roll, pitch, yaw vectors.
+            Interpolates between the vectors <paramref name="from"/> and <paramref name="to"/> by the interpolant <paramref name="t"/>. <paramref name="t"/> is clamped to the range [0f, 1f]. 
+            When t = 0f, returns <paramref name="from"/>. When t = 1f, returns <paramref name="to"/>. When t = 0.5f, returns the Vector3 halfway between <paramref name="from"/> and <paramref name="to"/>.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Enflux.SDK.Utils.Vector3Utils.LerpAngleUnclamped(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Linearly interpolates between two roll, pitch, yaw vectors.
+            Interpolates between the vectors <paramref name="from"/> and <paramref name="to"/> by the interpolant <paramref name="t"/>.
+            When t = 0f, returns <paramref name="from"/>. When t = 1f, returns <paramref name="to"/>. When t = 0.5f, returns the Vector3 halfway between <paramref name="from"/> and <paramref name="to"/>.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Enflux.SDK.VR.HMDAdapter">
+            <summary>
+            Aligns attached Transform with the orientation of a VR headset.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.VR.HMDAdapter.Hmd">
+            <summary>
+            Transform of the headset.
+            </summary>
+        </member>
+        <member name="F:Enflux.SDK.VR.HMDAdapter.EyeLocation">
+            <summary>
+            Transform of the rig's eye location on its head.
+            </summary>
+        </member>
+        <member name="M:Enflux.SDK.VR.HMDAdapter.AlignBodyWithHmd">
+            <summary>
+            Aligns attached Transform with the orientation of a VR headset.
+            </summary>
+        </member>
+        <member name="T:Enflux.Common.Extensions.ActionExtensions">
+            <summary>
+            Action extension methods.
+            </summary>
+        </member>
+    </members>
+</doc>

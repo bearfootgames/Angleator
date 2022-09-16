@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ab2dc4b4cf6e9b0478109fe43c85a4d5
+timeCreated: 1505433881
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _toggleTarget: {instanceID: 0}
+  - _button: {instanceID: 0}
+  - _icon: {instanceID: 0}
+  - _showSprite: {fileID: 21300000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  - _hideSprite: {fileID: 21300000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 0ec23c4d33fa3044cb6e16d99caaa2c0, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
